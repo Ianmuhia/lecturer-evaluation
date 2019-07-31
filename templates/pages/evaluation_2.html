@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+
+<p>Lecturer Evaluation </p>
+<hr>
+
+{% if  lecturers %}
+
+{% for lecturer in lecturers  %}
+
+
+<br> {{ Lecturer.lec_fname}}
+<hr>
+
+Showing Lecturer Evaluation Scores <br>
+<table callpadding=2>
+
+	{% for evlscore in evlscores  %}
+	<tr bgcolor='#eeeeee'>
+		<td>{{ evlscore.unt_code }}.. </td>
+		<td>{{ evlscore.unt_name }}</td>
+		<td>{{ evlscore.unt_hours }}</td>
+		<td>{{ evlscore.unt_mode }}</td>
+		<td>{{ unt.unt_isactive }}</td>
+
+		<td> <a href='/LinkUnits/?staff_id={{ xcrs.course_id }}&lvl=2'>Edit</a></td>
+		<td> <a href='/LinkUnits/?staff_id={{ xcrs.course_id }}&lvl=2'>Post Marks</a></td>
+	</tr>
+	{% endfor %}
+
+</table>
+{% endfor %}
+<p>No Results matched your search criteria - In Lecturer Evaluation Scores</p>
+{% endif %} <br>
+
+{% endblock %}

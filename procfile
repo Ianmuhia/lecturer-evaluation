@@ -1,0 +1,1 @@
+web: gunicorn LES.wsgi --log-file -

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<form method='POST' action="{% url 'answer' %}">
+  {% csrf_token %}
+
+
+
+  {% if questions %}
+  <table callpadding=2>
+
+    {% for question in questions  %}
+
+    <tr bgcolor='#eeeeee'>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>QUESTION_ID</th>
+            <th>QUESTION_FACULTY</th>
+            <th>QUESTION_DESCRIPTION</th>
+            <th>FURTHER_COMMENTS</th>
+            <th>MARKS</th>
+          </tr>
+          <tr>
+            <th>{{question.question_id}}</th>
+            <th>{{question.question_faculty}}</th>
+            <th>{{question.question_description}}</th>
+            <th><textarea for='message' name="message" class="form-control"></textarea></th>
+            <th><textarea for='question_id' name="question_id" class="form-control"></textarea></th>
+            <th><textarea for='question_description' name="question_description" class="form-control"></textarea></th>
+            {% comment %} <th><textarea for='message' name="message" class="form-control"></textarea></th>
+            <th><textarea for='message' name="message" class="form-control"></textarea></th> {% endcomment %}
+
+            <td>
+              <select name='{{ lecturerx }}_{{ studentx }}_{{ xqn.qnl_id }}'>
+                <option value="1">1 : Low</option>
+                <option value="2">2 : Average</option>
+                <option value="3">3 : Good</option>
+                <option value="4">4 : Above Average</option>
+                <option value="5">5 : Excellent</option>
+              </select>
+
+            </td>
+          </tr>
+
+        </thead>
+
+
+
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No Results matched your search criteria.</p>
+  {% endif %} <br>
+
+  <input type='submit'>
+
+  {% endblock %}
